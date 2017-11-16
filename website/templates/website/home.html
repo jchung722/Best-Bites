@@ -1,0 +1,63 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>Best Bites</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    </head>
+    <header>
+      <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              <img alt="BestBites" src="...">
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Sign Up</a></li>
+              <li><a href="#">Log In</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container" id="home-banner">
+                <h1 class="display-3">Welcome to Best Bites!</h1>
+                <p class="lead">Start searching for the best food!</p>
+                <form class="form-inline">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                      <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+                      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="What are you craving?">
+                    </div>
+
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                      <div class="input-group-addon"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></div>
+                      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Location">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Go</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            {% for dish in dishes %}
+                <div class="col-sm-6 col-md-4 home-dish-image">
+                  <div class="thumbnail">
+                    <a href="{% url 'dish_detail' pk=dish.pk %}"><img src="{{ dish.image }}" alt="{{dish.name}}"></a>
+                    <div class="caption">
+                      <h3>{{ dish.name }}</h3>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <footer>
+      <p>	&copy; 2017 Best Bites</p>
+    </footer>
+</html>

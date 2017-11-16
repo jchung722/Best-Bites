@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>Best Bites</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    </head>
+    <header>
+        <div>
+            <h1><a href="/">Best Bites</a></h1>
+        </div>
+    </header>
+    <body>
+          {% block content %}
+          {% endblock %}
+    </body>
+    <footer>
+      <p>	&copy; 2017 Best Bites</p>
+    </footer>
+</html>
