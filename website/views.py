@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Dish
+from .models import Dish, Restaurant, Review
 
 # Create your views here.
 def home(request):
@@ -8,4 +8,5 @@ def home(request):
 
 def dish_detail(request, pk):
     dish = Dish.objects.get(pk=pk)
-    return render(request, 'website/dish_detail.html', {'dish': dish})
+    reviews = Review.objects.filter(dish=dish)
+    return render(request, 'website/dish_detail.html', {'dish': dish, 'reviews':reviews})
