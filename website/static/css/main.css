@@ -20,6 +20,14 @@
   text-align: center;
 }
 
+#browse{
+  text-align: center;
+}
+
 footer {
   text-align: center;
+}
+
+.main-image {
+  height: 500px;
 }
