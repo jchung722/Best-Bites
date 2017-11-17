@@ -6,7 +6,7 @@
         <h1>{{ dish.name }}</h1>
         <p>{{ dish.restaurant.name }}</p>
         <img class="main-image" src="{{ dish.image }}" alt="{{dish.name}}">
-        <div><button type="button" class="btn btn-primary">See More Photos</button></div>
+        <div><button type="button" class="btn btn-primary btn-photo">See More Photos</button></div>
     </div>
     <div class="dish-info">
         <p>{{dish.description}}</p>
@@ -15,7 +15,7 @@
     <div class="other-dishes">
       <p>More dishes from {{dish.restaurant.name}}</p>
       {% for dish in dishes %}
-        <img class="other-dishes-images" src="{{ dish.image }}" alt="{{dish.name}}">
+        <a href="{% url 'dish_detail' pk=dish.pk %}"><img class="other-dishes-images" src="{{ dish.image }}" alt="{{dish.name}}"></a>
         <p>{{dish.name}}</p>
       {% endfor %}
       <div><button type="button" class="btn btn-primary">See Menu</button></div>

@@ -45,17 +45,66 @@
             </div>
         </div>
         <h2 id="browse">Browse some of the best local eats!</h2>
-        <div class="row">
-            {% for dish in dishes %}
-                <div class="col-sm-6 col-md-4 home-dish-image">
-                  <div class="thumbnail">
-                    <a href="{% url 'dish_detail' pk=dish.pk %}"><img src="{{ dish.image }}" alt="{{dish.name}}"></a>
-                    <div class="caption">
-                      <h3>{{ dish.name }}</h3>
+        <div class="container">
+            <div class="col-xs-12">
+                <div class="well">
+                    <div id="myCarousel" class="carousel slide">
+
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="row">
+                                    {% for dish in dishes %}
+                                        <div class="col-xs-3 wrapper">
+                                          <div class="thumbnail">
+                                            <a href="{% url 'dish_detail' pk=dish.pk %}"><img src="{{ dish.image }}" alt="{{dish.name}}" class="img-responsive dish-carousel"></a>
+                                            <div class="caption">
+                                              <p>{{ dish.name }}</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                    <div class="col-xs-3"><a href="#x" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                        </div>
+                        <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
                     </div>
-                  </div>
+                    <!--/myCarousel-->
                 </div>
-            {% endfor %}
+                <!--/well-->
+            </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
