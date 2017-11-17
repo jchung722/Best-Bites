@@ -1,0 +1,25 @@
+{% extends 'website/main.html' %}
+
+{% block content %}
+<h2>{{user.first_name}}'s Profile</h2>
+<div class="user-photos">
+  <h3>Photos</h3>
+  <p>Number of likes</p>
+</div>
+<div class="user-favs">
+  <h3>Favorites</h3>
+</div>
+<div class="user-recs">
+  <h3>Recommendations</h3>
+</div>
+<div class="reviews">
+  {% for review in reviews %}
+    <p>{{ review.rating}}</p>
+    <p>{{ review.feedback}}</p>
+    <p>{{ review.created_date}}</p>
+    <img src="{{ review.dish.image }}" alt="{{review.dish.name}}">
+  {% endfor %}
+</div>
+
+
+{% endblock %}

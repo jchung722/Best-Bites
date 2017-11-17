@@ -23,10 +23,11 @@
     <h2 id="review-head">Reviews</h2>
     <div class="reviews">
       {% for review in reviews %}
-        <p>{{ review.author}}</p>
+        <a href="{% url 'user_detail' pk=review.author.pk %}"><p>{{ review.author}}</p></a>
         <p>{{ review.rating}}</p>
         <p>{{ review.feedback}}</p>
         <p>{{ review.created_date}}</p>
+        <button type="button">Like</button>
       {% endfor %}
     </div>
 {% endblock %}
