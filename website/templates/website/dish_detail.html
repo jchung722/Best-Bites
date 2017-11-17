@@ -1,13 +1,26 @@
 {% extends 'website/main.html' %}
 
 {% block content %}
-    <div class="dish">
+
+    <div class="dish-main">
         <h1>{{ dish.name }}</h1>
         <p>{{ dish.restaurant.name }}</p>
         <img class="main-image" src="{{ dish.image }}" alt="{{dish.name}}">
-        <p>{{dish.description}}</p>
-        <p>{{dish.price}}</p>
+        <div><button type="button" class="btn btn-primary">See More Photos</button></div>
     </div>
+    <div class="dish-info">
+        <p>{{dish.description}}</p>
+        <p>${{dish.price}}</p>
+    </div>
+    <div class="other-dishes">
+      <p>More dishes from {{dish.restaurant.name}}</p>
+      {% for dish in dishes %}
+        <img class="other-dishes-images" src="{{ dish.image }}" alt="{{dish.name}}">
+        <p>{{dish.name}}</p>
+      {% endfor %}
+      <div><button type="button" class="btn btn-primary">See Menu</button></div>
+    </div>
+    <h2 id="review-head">Reviews</h2>
     <div class="reviews">
       {% for review in reviews %}
         <p>{{ review.author}}</p>

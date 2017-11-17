@@ -9,4 +9,5 @@ def home(request):
 def dish_detail(request, pk):
     dish = Dish.objects.get(pk=pk)
     reviews = Review.objects.filter(dish=dish)
-    return render(request, 'website/dish_detail.html', {'dish': dish, 'reviews':reviews})
+    dishes = Dish.objects.filter(restaurant = dish.restaurant)
+    return render(request, 'website/dish_detail.html', {'dish': dish, 'reviews':reviews, 'dishes':dishes})

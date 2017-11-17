@@ -1,0 +1,31 @@
+.main-image {
+  height: 400px;
+  width: 400px;
+}
+
+.dish-main, .dish-info, .other-dishes{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.other-dishes {
+  float: right;
+  border-left: 1px solid lightgrey;
+  padding: 20px 0 20px 20px;
+  margin: 10px 0 10px 0;
+}
+
+#review-head {
+  border-bottom: 1px solid black;
+  clear: both;
+}
+
+.reviews{
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 10px;
+}
+
+.other-dishes-images {
+  height: 150px;
+  width: 150px;
+}
