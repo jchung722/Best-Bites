@@ -5,11 +5,18 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import SignUpForm, ReviewForm, DishForm, RestaurantForm
+import random
 
 # Create your views here.
 def home(request):
-    dishes = Dish.objects.all()
-    return render(request, 'website/home.html', {'dishes': dishes})
+    dishes = list(Dish.objects.all())
+    random.shuffle(dishes)
+    dishes1 = dishes[:4]
+    random.shuffle(dishes)
+    dishes2 = dishes[:4]
+    random.shuffle(dishes)
+    dishes3 = dishes[:4]
+    return render(request, 'website/home.html', {'dishes1': dishes1, 'dishes2':dishes2, 'dishes3':dishes3})
 
 def dish_detail(request, pk):
     dish = Dish.objects.get(pk=pk)
