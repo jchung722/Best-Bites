@@ -4,16 +4,15 @@
 }
 
 .dish-main, .dish-info, .other-dishes{
-  display: inline-block;
   vertical-align: middle;
 }
 
 .dish-info {
   padding-left: 20px;
+  margin-top: 150px;
 }
 
 .other-dishes {
-  float: right;
   border-left: 1px solid lightgrey;
   padding: 20px 0 20px 30px;
   margin: 10px 0 10px 0;
@@ -21,12 +20,11 @@
 
 #review-head {
   border-bottom: 1px solid black;
-  clear: both;
 }
 
 .reviews{
   border-bottom: 1px solid lightgrey;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .other-dishes-images {
@@ -36,4 +34,8 @@
 
 .btn-photo {
   margin-top: 20px;
+}
+
+.dish-detail-container{
+  margin-bottom: 20px;
 }

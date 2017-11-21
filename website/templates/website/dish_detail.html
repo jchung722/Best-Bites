@@ -1,33 +1,46 @@
 {% extends 'website/main.html' %}
 
 {% block content %}
-
-    <div class="dish-main">
+<div class="row dish-detail-container">
+    <div class="col-md-4 dish-main">
         <h1>{{ dish.name }}</h1>
-        <p>{{ dish.restaurant.name }}</p>
+        <a href="{% url 'restaurant_detail' pk=dish.restaurant.pk %}">{{ dish.restaurant.name }}</a>
         <img class="main-image" src="{{ dish.image }}" alt="{{dish.name}}">
         <div><button type="button" class="btn btn-primary btn-photo">See More Photos</button></div>
     </div>
-    <div class="dish-info">
+    <div class="col-md-5 dish-info">
         <p>{{dish.description}}</p>
         <p>${{dish.price}}</p>
     </div>
-    <div class="other-dishes">
+    <div class="col-md-3 other-dishes">
       <p>More dishes from {{dish.restaurant.name}}</p>
-      {% for dish in dishes %}
+      {% for dish in dishes|slice:":3"%}
         <a href="{% url 'dish_detail' pk=dish.pk %}"><img class="other-dishes-images" src="{{ dish.image }}" alt="{{dish.name}}"></a>
         <p>{{dish.name}}</p>
       {% endfor %}
       <div><button type="button" class="btn btn-primary">See Menu</button></div>
     </div>
-    <h2 id="review-head">Reviews</h2>
-    <div class="reviews">
+    <div class="col-md-12">
+      <h2 id="review-head">Reviews</h2>
+      {% if user.is_authenticated %}
+          <h3>Write A Review</h3>
+          <form method="POST" class="post-form">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="save btn btn-default">Save</button>
+          </form>
+      {% else %}
+          <h3><a href="/login">Log in</a> to write a review!</h3>
+      {% endif %}
       {% for review in reviews %}
-        <a href="{% url 'user_detail' pk=review.author.pk %}"><p>{{ review.author}}</p></a>
-        <p>{{ review.rating}}</p>
-        <p>{{ review.feedback}}</p>
-        <p>{{ review.created_date}}</p>
-        <button type="button">Like</button>
+        <div class="reviews">
+          <a href="{% url 'user_detail' pk=review.author.pk %}"><p>{{ review.author}}</p></a>
+          <p>{{ review.rating}}</p>
+          <p>{{ review.feedback}}</p>
+          <p>{{ review.created_date}}</p>
+          <button type="button">Like</button>
+        </div>
       {% endfor %}
     </div>
+</div>
 {% endblock %}

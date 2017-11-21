@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load ratings %}
 
 <html>
     <head>
@@ -8,6 +9,8 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/dish_detail.css' %}">
         <link rel="stylesheet" href="{% static 'css/user_detail.css' %}">
+        <link rel="icon" href="{% static 'img/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
     </head>
     <header>
       <nav class="navbar navbar-inverse navbar-static-top">
@@ -18,7 +21,7 @@
             </a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-left">
                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                   <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
                   <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="What are you craving?">
@@ -32,8 +35,13 @@
                 <button type="submit" class="btn btn-primary">Go</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Sign Up</a></li>
-              <li><a href="#">Log In</a></li>
+              {% if user.is_authenticated %}
+                  <li><a href="{% url 'user_detail' pk=user.pk %}">{{user.username}}</a></li>
+                  <li><a href="/logout">Log Out</a></li>
+              {% else %}
+                  <li><a href="/signup">Sign Up</a></li>
+                  <li><a href="/login">Log In</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -46,6 +54,7 @@
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
     </body>
     <footer>
       <p>	&copy; 2017 Best Bites</p>
