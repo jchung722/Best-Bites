@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website',
+    'star_ratings',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = 'home'
+
+try:
+    from .local_settings import *
+except ImportError:
+    print('Unable to load local_settings.py:')
