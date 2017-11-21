@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Review
+from .models import Review, Dish, Restaurant
 
 
 class SignUpForm(UserCreationForm):
@@ -19,5 +19,14 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ('rating', 'feedback',)
 
+class DishForm(forms.ModelForm):
 
-        
+    class Meta:
+        model = Dish
+        fields = ('name', 'image', 'price', 'description')
+
+class RestaurantForm(forms.ModelForm):
+
+    class Meta:
+        model = Restaurant
+        fields = ('name', 'image', 'location', 'phone', 'website')

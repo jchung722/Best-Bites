@@ -4,7 +4,7 @@ from .models import Dish, Restaurant, Review
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .forms import SignUpForm, ReviewForm
+from .forms import SignUpForm, ReviewForm, DishForm, RestaurantForm
 
 # Create your views here.
 def home(request):
@@ -51,3 +51,34 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'website/signup.html', {'form': form})
+
+def dish_list(request):
+    dishes = Dish.objects.all()
+    query = request.GET.get("q")
+    if query:
+        dishes = dishes.filter(name__icontains=query)
+    return render(request, 'website/dish_list.html', {'dishes': dishes})
+
+def dish_new(request, pk):
+    restaurant = Restaurant.objects.get(pk=pk)
+    if request.method == "POST":
+        form = DishForm(request.POST)
+        if form.is_valid():
+            dish = form.save(commit=False)
+            dish.restaurant = restaurant
+            dish.save()
+            return redirect('restaurant_detail', pk=restaurant.pk)
+    else:
+        form = DishForm()
+    return render(request, 'website/dish_new.html', {'form': form})
+
+def restaurant_new(request):
+    if request.method == "POST":
+        form = RestaurantForm(request.POST)
+        if form.is_valid():
+            restaurant = form.save(commit=False)
+            restaurant.save()
+            return redirect('restaurant_detail', pk=restaurant.pk)
+    else:
+        form = RestaurantForm()
+    return render(request, 'website/restaurant_new.html', {'form': form})

@@ -1,0 +1,9 @@
+{% extends 'website/main.html' %}
+
+{% block content %}
+    <h1>New Dish</h1>
+    <form method="POST" class="dish-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

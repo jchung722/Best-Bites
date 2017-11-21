@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', auth_views.login, {'template_name': 'website/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^search', views.dish_list, name='dish_list'),
+    url(r'^restaurant/(?P<pk>\d+)/dish/new/$', views.dish_new, name='dish_new'),
+    url(r'^restaurant/new/$', views.restaurant_new, name='restaurant_new'),
 ]

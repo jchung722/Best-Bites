@@ -1,0 +1,16 @@
+{% extends 'website/main.html' %}
+
+{% block content %}
+<h2>Community Favorites</h2>
+<div class="row">
+  {% for dish in dishes %}
+    <div class="col-md-5">
+      <div class="thumbnail">
+        <a href="{% url 'dish_detail' pk=dish.pk %}"><img class="img-responsive" id="thumbnail-image" src="{{ dish.image }}" alt="{{dish.name}}"></a>
+        <p>{{dish.name}} ${{dish.price}}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

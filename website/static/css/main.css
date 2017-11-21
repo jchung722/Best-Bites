@@ -21,10 +21,13 @@ span {
 }
 
 .thumbnail {
-
   text-align: center;
   height: 250px;
   width: 250px;
+}
+
+#thumbnail-image  {
+  height: 100%;
 }
 
 #browse{

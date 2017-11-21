@@ -18,7 +18,7 @@
         <a href="{% url 'dish_detail' pk=dish.pk %}"><img class="other-dishes-images" src="{{ dish.image }}" alt="{{dish.name}}"></a>
         <p>{{dish.name}}</p>
       {% endfor %}
-      <div><button type="button" class="btn btn-primary">See Menu</button></div>
+      <a href="{% url 'restaurant_detail' pk=dish.restaurant.pk %}" type="button" class="btn btn-primary">See Menu</a>
     </div>
     <div class="col-md-12">
       <h2 id="review-head">Reviews</h2>
