@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^search', views.dish_list, name='dish_list'),
     url(r'^restaurant/(?P<pk>\d+)/dish/new/$', views.dish_new, name='dish_new'),
     url(r'^restaurant/new/$', views.restaurant_new, name='restaurant_new'),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon/favicon.ico')),
 ]

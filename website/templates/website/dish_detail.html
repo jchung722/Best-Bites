@@ -33,7 +33,19 @@
       <a href="{% url 'restaurant_detail' pk=dish.restaurant.pk %}" type="button" class="btn btn-primary">See Menu</a>
     </div>
     <div class="col-md-12">
-      <h2 id="review-head">Reviews</h2>
+      <h2 id="review-head">Reviews
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort By <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Newest First</a></li>
+            <li><a href="#">Oldest First</a></li>
+            <li><a href="#">Highest Rated</a></li>
+            <li><a href="#">Lowest Rated</a></li>
+          </ul>
+        </div>
+      </h2>
       {% if user.is_authenticated %}
           <h3>Write A Review</h3>
           <form method="POST" class="post-form">
