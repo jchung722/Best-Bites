@@ -9,7 +9,7 @@ from django.db.models import Avg
 
 # Create your views here.
 def home(request):
-    dishes = Dish.objects.all()
+    dishes = Dish.objects.all().order_by('?')
     return render(request, 'website/home.html', {'dishes': dishes})
 
 def dish_detail(request, pk):

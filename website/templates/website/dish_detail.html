@@ -23,6 +23,12 @@
       {% for dish in dishes|slice:":3"%}
         <a href="{% url 'dish_detail' pk=dish.pk %}"><img class="other-dishes-images" src="{{ dish.image }}" alt="{{dish.name}}"></a>
         <p>{{dish.name}}</p>
+        <p>
+          {% for i in dish.average_rating_range %}
+              <img class="rating" src="../../static/img/rating.png" alt="rating">
+          {% endfor %}
+            {{dish.reviews.count}} Reviews
+        </p>
       {% endfor %}
       <a href="{% url 'restaurant_detail' pk=dish.restaurant.pk %}" type="button" class="btn btn-primary">See Menu</a>
     </div>
