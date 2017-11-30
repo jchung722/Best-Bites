@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import SignUpForm, ReviewForm, DishForm, RestaurantForm
+from django.db.models import Avg
 
 # Create your views here.
 def home(request):
@@ -13,7 +14,8 @@ def home(request):
 
 def dish_detail(request, pk):
     dish = Dish.objects.get(pk=pk)
-    reviews = Review.objects.filter(dish=dish)
+    reviews = dish.reviews.all()
+
     dishes = Dish.objects.filter(restaurant = dish.restaurant)
     if request.method == 'POST':
         form = ReviewForm(request.POST)

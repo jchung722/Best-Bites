@@ -9,6 +9,12 @@
         <div><button type="button" class="btn btn-primary btn-photo">See More Photos</button></div>
     </div>
     <div class="col-md-5 dish-info">
+        <p>
+          {% for i in dish.average_rating_range %}
+              <img class="rating" src="../../static/img/rating.png" alt="rating">
+          {% endfor %}
+            {{dish.reviews.count}} Reviews
+        </p>
         <p>{{dish.description}}</p>
         <p>${{dish.price}}</p>
     </div>
@@ -35,8 +41,10 @@
       {% for review in reviews %}
         <div class="reviews">
           <a href="{% url 'user_detail' pk=review.author.pk %}"><p>{{ review.author}}</p></a>
-          <p>{{ review.rating}}</p>
-          <p>{{ review.feedback}}</p>
+          {% for i in review.rating_range %}
+              <img class="rating" src="../../static/img/rating.png" alt="rating">
+          {% endfor %}
+          <p>{{ review.feedback }}</p>
           <p>{{ review.created_date}}</p>
           <button type="button">Like</button>
         </div>

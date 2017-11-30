@@ -16,11 +16,31 @@ class Dish(models.Model):
     image = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=11, decimal_places=2)
     description = models.TextField()
+
+    @property
+    def average_rating(self):
+        total = 0
+        count = 0
+        average = 0
+        reviews = self.reviews.all()
+        for review in reviews:
+            total += int(review.rating)
+            count += 1
+
+        if total > 0:
+            average = float("{0:.1f}".format(total/count))
+
+        return average
+
+    def average_rating_range(self):
+        average_int = int(self.average_rating)
+        return range(0, average_int)
+
     pass
 
 class Review(models.Model):
     author = models.ForeignKey('auth.User')
-    dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
+    dish = models.ForeignKey(Dish, on_delete=models.CASCADE, related_name='reviews')
     RATING = (
         ('5', '5 - The best!'),
         ('4', '4 - Delicious!'),
@@ -35,3 +55,7 @@ class Review(models.Model):
     )
     feedback = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+
+    def rating_range(self):
+        rating_int = int(self.rating)
+        return range(0, rating_int)
